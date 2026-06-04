@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tributo a José Madero — Amnistía · McCarthy's Irish Pub</title>
+<meta name="description" content="Tributo a José Madero por Amnistía. Sábado 13 de junio · McCarthy's Irish Pub Boca del Río · Acceso 9:00 PM">
+<meta property="og:title" content="Tributo a José Madero — Amnistía">
+<meta property="og:description" content="Sábado 13 de junio · McCarthy's Irish Pub Boca del Río">
+<meta property="og:image" content="flyer.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --pu1:#2d1b4e;--pu2:#4a2d7a;--pu3:#7c4dbd;--pu4:#a67de0;--pu5:#c9a8f0;
+  --wh:#ffffff;--wh2:rgba(255,255,255,0.85);--wh3:rgba(255,255,255,0.55);--wh4:rgba(255,255,255,0.12);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',system-ui,sans-serif;background:#1a0f2e;color:var(--wh);line-height:1.5;}
+.page{max-width:800px;margin:0 auto;}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:rgba(26,15,46,0.96);border-bottom:1px solid var(--wh4);position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);}
+.nav-logo{font-size:13px;font-weight:600;color:var(--pu5);letter-spacing:1px;text-transform:uppercase;}
+.nav-links{display:flex;gap:20px;}
+.nav-links a{font-size:12px;color:var(--wh3);text-decoration:none;cursor:pointer;transition:color 0.2s;}
+.nav-links a:hover{color:var(--wh);}
+.nav-cta{background:var(--pu3);color:var(--wh);border:none;border-radius:20px;padding:7px 18px;font-size:12px;font-weight:500;cursor:pointer;}
+.nav-cta:hover{background:var(--pu4);}
+
+/* HERO */
+.hero{position:relative;min-height:520px;display:flex;align-items:flex-end;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#2d1b4e 0%,#7c4dbd 55%,#4a2d7a 100%);}
+.hero-flyer{position:absolute;right:0;top:0;height:100%;width:55%;object-fit:cover;object-position:top center;opacity:0.65;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,46,1) 0%,rgba(26,15,46,0.5) 55%,transparent 100%);}
+.hero-overlay-left{position:absolute;inset:0;background:linear-gradient(to right,rgba(26,15,46,0.9) 35%,transparent 70%);}
+.hero-content{position:relative;z-index:2;padding:48px 28px 40px;}
+.hero-tag{display:inline-block;background:rgba(124,77,189,0.3);border:1px solid rgba(124,77,189,0.5);border-radius:20px;padding:4px 14px;font-size:11px;color:var(--pu5);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;}
+.hero-pre{font-size:11px;font-weight:500;color:var(--wh3);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;}
+.hero-title{font-size:52px;font-weight:600;color:var(--wh);line-height:0.95;margin-bottom:8px;letter-spacing:-2px;}
+.hero-by{font-size:15px;color:var(--pu5);margin-bottom:28px;letter-spacing:1px;}
+.hero-meta{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;}
+.hero-meta-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--wh2);}
+.hero-meta-item svg{width:16px;height:16px;color:var(--pu4);flex-shrink:0;}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-primary{background:var(--pu3);color:var(--wh);border:none;border-radius:24px;padding:13px 28px;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background 0.2s;}
+.btn-primary:hover{background:var(--pu4);}
+.btn-outline{background:transparent;color:var(--wh);border:1.5px solid var(--wh4);border-radius:24px;padding:13px 24px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;transition:all 0.2s;}
+.btn-outline:hover{border-color:rgba(255,255,255,0.4);background:var(--wh4);}
+
+/* SECTIONS */
+section{padding:40px 28px;}
+.section-label{font-size:10px;font-weight:600;color:var(--pu4);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:20px;}
+.section-title{font-size:22px;font-weight:500;color:var(--wh);margin-bottom:6px;}
+
+/* INFO CARDS */
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+@media(max-width:600px){.info-grid{grid-template-columns:1fr;}}
+.info-card{background:rgba(255,255,255,0.05);border:1px solid var(--wh4);border-radius:14px;padding:18px;}
+.info-card svg{width:22px;height:22px;color:var(--pu4);margin-bottom:10px;}
+.info-card-label{font-size:10px;color:var(--wh3);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+.info-card-val{font-size:14px;color:var(--wh);font-weight:500;line-height:1.5;}
+
+/* TICKETS */
+.ticket-box{background:rgba(124,77,189,0.12);border:1px solid rgba(124,77,189,0.35);border-radius:18px;padding:26px;}
+.ticket-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:8px;}
+.ticket-header-title{font-size:17px;font-weight:500;color:var(--wh);}
+.ticket-avail{font-size:11px;color:var(--pu5);background:rgba(124,77,189,0.25);border:1px solid rgba(124,77,189,0.4);border-radius:20px;padding:4px 12px;}
+.ticket-types{display:flex;flex-direction:column;gap:10px;margin-bottom:22px;}
+.ticket-row{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.04);border:1px solid var(--wh4);border-radius:12px;padding:16px 18px;cursor:pointer;transition:all 0.2s;gap:12px;}
+.ticket-row:hover,.ticket-row.sel{border-color:var(--pu3);background:rgba(124,77,189,0.1);}
+.ticket-row-left{flex:1;}
+.ticket-row-name{font-size:14px;font-weight:500;color:var(--wh);margin-bottom:3px;}
+.ticket-row-desc{font-size:11px;color:var(--wh3);}
+.ticket-row-right{display:flex;align-items:center;gap:14px;flex-shrink:0;}
+.ticket-price-wrap{text-align:right;}
+.ticket-price{font-size:16px;font-weight:600;color:var(--pu5);}
+.ticket-svc{font-size:10px;color:var(--wh3);margin-top:1px;}
+.qty-ctrl{display:flex;align-items:center;gap:10px;}
+.qty-btn{width:28px;height:28px;border-radius:50%;border:1px solid var(--wh4);background:rgba(255,255,255,0.06);color:var(--wh);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;line-height:1;transition:all 0.15s;}
+.qty-btn:hover{border-color:var(--pu3);background:rgba(124,77,189,0.25);}
+.qty-num{font-size:15px;font-weight:500;color:var(--wh);min-width:18px;text-align:center;}
+.ticket-divider{height:1px;background:var(--wh4);margin-bottom:16px;}
+.ticket-total-row{display:flex;align-items:flex-end;justify-content:space-between;}
+.total-left .total-label{font-size:12px;color:var(--wh3);margin-bottom:3px;}
+.total-left .total-breakdown{font-size:11px;color:rgba(255,255,255,0.3);}
+.total-amount{font-size:24px;font-weight:600;color:var(--wh);}
+.buy-btn{width:100%;background:var(--pu3);color:var(--wh);border:none;border-radius:24px;padding:15px;font-size:14px;font-weight:500;cursor:pointer;margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px;transition:background 0.2s;}
+.buy-btn:hover:not(:disabled){background:var(--pu4);}
+.buy-btn:disabled{opacity:0.4;cursor:default;}
+
+/* LOCATION */
+.location-card{background:rgba(255,255,255,0.04);border:1px solid var(--wh4);border-radius:14px;padding:20px;display:flex;align-items:flex-start;gap:16px;}
+.location-icon{width:44px;height:44px;background:rgba(124,77,189,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.location-icon svg{width:22px;height:22px;color:var(--pu4);}
+.location-name{font-size:15px;font-weight:500;color:var(--wh);margin-bottom:4px;}
+.location-addr{font-size:12px;color:var(--wh3);line-height:1.6;}
+.location-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--pu5);text-decoration:none;margin-top:10px;}
+.location-link:hover{color:var(--wh);}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.gallery-item{border-radius:10px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid var(--wh4);aspect-ratio:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color 0.2s;position:relative;}
+.gallery-item:hover{border-color:var(--pu3);}
+.gallery-item svg{width:28px;height:28px;color:rgba(255,255,255,0.2);}
+.gallery-item img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.gallery-item.large{grid-column:span 2;aspect-ratio:2/1;}
+.gallery-note{font-size:11px;color:rgba(255,255,255,0.25);text-align:center;margin-top:12px;}
+
+/* VIDEOS */
+.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media(max-width:500px){.video-grid{grid-template-columns:1fr;}}
+.video-card{background:rgba(255,255,255,0.04);border:1px solid var(--wh4);border-radius:14px;overflow:hidden;cursor:pointer;text-decoration:none;transition:border-color 0.2s;display:block;}
+.video-card:hover{border-color:var(--pu3);}
+.video-thumb{aspect-ratio:16/9;background:rgba(124,77,189,0.15);display:flex;align-items:center;justify-content:center;position:relative;}
+.play-circle{width:48px;height:48px;background:rgba(124,77,189,0.75);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.play-circle svg{width:20px;height:20px;color:#fff;margin-left:3px;}
+.video-info{padding:12px 14px;}
+.video-title{font-size:12px;font-weight:500;color:var(--wh);margin-bottom:3px;}
+.video-meta{font-size:11px;color:var(--wh3);}
+
+/* FOOTER */
+footer{background:rgba(0,0,0,0.35);border-top:1px solid var(--wh4);padding:28px;text-align:center;}
+.footer-logo{font-size:13px;font-weight:600;color:var(--pu5);letter-spacing:1px;margin-bottom:6px;}
+.footer-text{font-size:12px;color:var(--wh3);margin-bottom:4px;}
+.footer-legal{font-size:10px;color:rgba(255,255,255,0.25);margin-top:12px;}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Amnistía</div>
+  <div class="nav-links">
+    <a href="#boletos">Boletos</a>
+    <a href="#galeria">Galería</a>
+    <a href="#videos">Videos</a>
+  </div>
+  <a href="#boletos" class="nav-cta">Comprar</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <!-- Reemplaza "flyer.png" con el nombre real de tu imagen -->
+  <img class="hero-flyer" src="flyer.png" alt="Flyer del evento" onerror="this.style.display='none'">
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-left"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Próximo evento</div>
+    <div class="hero-pre">Tributo a</div>
+    <div class="hero-title">José<br>Madero</div>
+    <div class="hero-by">por Amnistía</div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        Sábado 13 de junio, 2025
+      </div>
+      <div class="hero-meta-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Acceso 9:00 PM &nbsp;·&nbsp; Inicio 10:00 PM
+      </div>
+      <div class="hero-meta-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        McCarthy's Irish Pub &nbsp;·&nbsp; Boca del Río
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="#boletos" class="btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 5l2 2-9.5 9.5-3 1 1-3L15 5z"/><path d="M20 10l-1-1 1-3 3 1-3 3z"/></svg>
+        Comprar boletos
+      </a>
+      <a href="#info" class="btn-outline">Ver detalles</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section id="info">
+  <div class="section-label">Detalles del evento</div>
+  <div class="info-grid">
+    <div class="info-card">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <div class="info-card-label">Fecha</div>
+      <div class="info-card-val">Sábado<br>13 de junio, 2025</div>
+    </div>
+    <div class="info-card">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <div class="info-card-label">Horario</div>
+      <div class="info-card-val">Acceso 9:00 PM<br>Inicio 10:00 PM</div>
+    </div>
+    <div class="info-card">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+      <div class="info-card-label">Cover</div>
+      <div class="info-card-val">$100 MXN<br>por lugar</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKETS -->
+<section id="boletos" style="padding-top:0;">
+  <div class="section-label">Boletos</div>
+  <div class="ticket-box">
+    <div class="ticket-header">
+      <div class="ticket-header-title">Selecciona tus lugares</div>
+      <div class="ticket-avail">Venta abierta</div>
+    </div>
+    <div class="ticket-types">
+      <div class="ticket-row" id="tr-general" onclick="toggleRow('general')">
+        <div class="ticket-row-left">
+          <div class="ticket-row-name">Lugar general</div>
+          <div class="ticket-row-desc">Acceso al venue · Mesa sujeta a disponibilidad</div>
+        </div>
+        <div class="ticket-row-right">
+          <div class="ticket-price-wrap">
+            <div class="ticket-price">$100</div>
+            <div class="ticket-svc">+ 5% cargo servicio</div>
+          </div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="event.stopPropagation();changeQty('general',-1)">−</button>
+            <span class="qty-num" id="qty-general">0</span>
+            <button class="qty-btn" onclick="event.stopPropagation();changeQty('general',1)">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="ticket-row" id="tr-mesa" onclick="toggleRow('mesa')">
+        <div class="ticket-row-left">
+          <div class="ticket-row-name">Mesa reservada</div>
+          <div class="ticket-row-desc">Elige tu mesa en el mapa del venue</div>
+        </div>
+        <div class="ticket-row-right">
+          <div class="ticket-price-wrap">
+            <div class="ticket-price">$100</div>
+            <div class="ticket-svc">+ 5% cargo servicio</div>
+          </div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="event.stopPropagation();changeQty('mesa',-1)">−</button>
+            <span class="qty-num" id="qty-mesa">0</span>
+            <button class="qty-btn" onclick="event.stopPropagation();changeQty('mesa',1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ticket-divider"></div>
+    <div class="ticket-total-row">
+      <div class="total-left">
+        <div class="total-label" id="total-label">Selecciona al menos un lugar</div>
+        <div class="total-breakdown" id="total-breakdown"></div>
+      </div>
+      <div class="total-amount" id="total-amount">$0</div>
+    </div>
+    <button class="buy-btn" id="buy-btn" disabled onclick="handleBuy()">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+      Continuar al pago
+    </button>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section style="padding-top:0;">
+  <div class="section-label">Ubicación</div>
+  <div class="location-card">
+    <div class="location-icon">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+    </div>
+    <div>
+      <div class="location-name">McCarthy's Irish Pub — Boca del Río</div>
+      <div class="location-addr">
+        Boca del Río, Veracruz · México<br>
+        <!-- Agrega la dirección exacta aquí -->
+      </div>
+      <a class="location-link" href="https://maps.google.com/?q=McCarthys+Irish+Pub+Boca+del+Rio+Veracruz" target="_blank">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Ver en Google Maps
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="galeria" style="padding-top:0;">
+  <div class="section-label">Eventos anteriores</div>
+  <div class="gallery-grid">
+    <!-- Reemplaza los src con tus fotos reales. Ejemplo: src="fotos/foto1.jpg" -->
+    <div class="gallery-item large">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    </div>
+    <div class="gallery-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    </div>
+    <div class="gallery-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    </div>
+    <div class="gallery-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    </div>
+    <div class="gallery-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    </div>
+    <div class="gallery-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    </div>
+  </div>
+  <div class="gallery-note">Agrega tus fotos en la carpeta /fotos y actualiza los src arriba</div>
+</section>
+
+<!-- VIDEOS -->
+<section id="videos" style="padding-top:0;">
+  <div class="section-label">Videos</div>
+  <div class="video-grid">
+    <!-- Para cada video: reemplaza el href con el link de YouTube real -->
+    <a class="video-card" href="https://youtube.com" target="_blank">
+      <div class="video-thumb">
+        <div class="play-circle">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">Amnistía en vivo — Show anterior</div>
+        <div class="video-meta">Evento pasado · McCarthy's</div>
+      </div>
+    </a>
+    <a class="video-card" href="https://youtube.com" target="_blank">
+      <div class="video-thumb">
+        <div class="play-circle">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">Highlights del show</div>
+        <div class="video-meta">Evento pasado · McCarthy's</div>
+      </div>
+    </a>
+    <a class="video-card" href="https://youtube.com" target="_blank">
+      <div class="video-thumb">
+        <div class="play-circle">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">Behind the scenes</div>
+        <div class="video-meta">Preparación del evento</div>
+      </div>
+    </a>
+    <a class="video-card" href="https://youtube.com" target="_blank">
+      <div class="video-thumb">
+        <div class="play-circle">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">Reseña del público</div>
+        <div class="video-meta">Testimonios · Fans</div>
+      </div>
+    </a>
+  </div>
+  <div class="gallery-note">Reemplaza los href con tus links reales de YouTube o Instagram</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Amnistía</div>
+  <div class="footer-text">McCarthy's Irish Pub · Boca del Río, Veracruz</div>
+  <div class="footer-text">Sábado 13 de junio, 2025</div>
+  <div class="footer-legal">Términos y condiciones · Política de reembolso<br>© 2025 Amnistía. Todos los derechos reservados.</div>
+</footer>
+
+</div>
+
+<script>
+const PRICE = 100, SVC = 0.05;
+const qty = { general: 0, mesa: 0 };
+
+function toggleRow(type) {
+  if (qty[type] === 0) changeQty(type, 1);
+}
+
+function changeQty(type, delta) {
+  qty[type] = Math.max(0, qty[type] + delta);
+  document.getElementById('qty-' + type).textContent = qty[type];
+  document.getElementById('tr-' + type).classList.toggle('sel', qty[type] > 0);
+  updateTotal();
+}
+
+function updateTotal() {
+  const count = qty.general + qty.mesa;
+  const base = count * PRICE;
+  const svc = Math.round(base * SVC);
+  const grand = base + svc;
+  document.getElementById('total-amount').textContent = '$' + grand.toLocaleString('es-MX');
+  if (count === 0) {
+    document.getElementById('total-label').textContent = 'Selecciona al menos un lugar';
+    document.getElementById('total-breakdown').textContent = '';
+    document.getElementById('buy-btn').disabled = true;
+  } else {
+    document.getElementById('total-label').textContent = count + ' lugar' + (count > 1 ? 'es' : '') + ' seleccionado' + (count > 1 ? 's' : '');
+    document.getElementById('total-breakdown').textContent = '$' + base.toLocaleString('es-MX') + ' + $' + svc + ' cargo por servicio';
+    document.getElementById('buy-btn').disabled = false;
+  }
+}
+
+function handleBuy() {
+  if (qty.mesa > 0) {
+    // Aquí irá el link al mapa de mesas cuando lo conectemos
+    alert('Redirigiendo al selector de mesas...\nEsta sección se conectará al mapa del venue que ya construimos.');
+  } else {
+    // Aquí irá Mercado Pago cuando lo conectemos
+    alert('Redirigiendo a Mercado Pago...\n' + qty.general + ' lugar(es) general · $' + Math.round(qty.general * PRICE * 1.05).toLocaleString('es-MX') + ' MXN');
+  }
+}
+</script>
+</body>
+</html>

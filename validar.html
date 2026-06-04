@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validador de Entrada — Amnistía</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#0f0f14;color:#fff;min-height:100vh;display:flex;flex-direction:column;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(15,15,20,0.95);border-bottom:1px solid rgba(255,255,255,0.08);}
+.nav-title{font-size:14px;font-weight:500;color:#fff;}
+.nav-sub{font-size:11px;color:rgba(255,255,255,0.4);}
+.page{flex:1;padding:20px;max-width:420px;margin:0 auto;width:100%;}
+.scanner-box{background:#1c1c28;border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:20px;margin-bottom:16px;}
+.scanner-title{font-size:13px;font-weight:500;color:rgba(255,255,255,0.7);margin-bottom:14px;text-align:center;}
+#reader{border-radius:10px;overflow:hidden;}
+.manual-box{background:#1c1c28;border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:20px;margin-bottom:16px;}
+.manual-title{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px;}
+.manual-row{display:flex;gap:8px;}
+.manual-input{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:10px 12px;color:#fff;font-size:13px;outline:none;font-family:'Inter',sans-serif;}
+.manual-input:focus{border-color:#7c4dbd;}
+.manual-btn{background:#7c4dbd;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;}
+.manual-btn:hover{background:#a67de0;}
+.result{border-radius:14px;padding:20px;margin-bottom:16px;display:none;}
+.result.ok{background:rgba(93,202,133,0.12);border:1.5px solid #2d6a2d;}
+.result.fail{background:rgba(226,75,74,0.12);border:1.5px solid #a32d2d;}
+.result-icon{font-size:36px;text-align:center;margin-bottom:12px;}
+.result-title{font-size:18px;font-weight:600;text-align:center;margin-bottom:16px;}
+.result.ok .result-title{color:#5dca85;}
+.result.fail .result-title{color:#e24b4a;}
+.result-row{display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid rgba(255,255,255,0.07);font-size:13px;}
+.result-lbl{color:rgba(255,255,255,0.45);}
+.result-val{color:#fff;font-weight:500;}
+.result-msg{font-size:13px;color:rgba(255,255,255,0.6);text-align:center;}
+.scan-again{width:100%;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:10px;font-size:13px;cursor:pointer;margin-top:14px;font-family:'Inter',sans-serif;}
+.scan-again:hover{background:rgba(255,255,255,0.1);}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.stat{background:#1c1c28;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px;text-align:center;}
+.stat-num{font-size:28px;font-weight:600;color:#c9a8f0;}
+.stat-lbl{font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px;}
+</style>
+</head>
+<body>
+<nav>
+  <div>
+    <div class="nav-title">Validador de Entrada</div>
+    <div class="nav-sub">Tributo a José Madero · Sáb 13 Jun</div>
+  </div>
+  <a href="index.html" style="font-size:11px;color:rgba(255,255,255,0.4);text-decoration:none;">Salir</a>
+</nav>
+
+<div class="page">
+  <div class="stats">
+    <div class="stat"><div class="stat-num" id="stat-ok">0</div><div class="stat-lbl">Accesos válidos</div></div>
+    <div class="stat"><div class="stat-num" id="stat-fail">0</div><div class="stat-lbl">Rechazados</div></div>
+  </div>
+
+  <div class="scanner-box">
+    <div class="scanner-title">Apunta la cámara al código QR</div>
+    <div id="reader"></div>
+  </div>
+
+  <div class="manual-box">
+    <div class="manual-title">O ingresa el código manualmente</div>
+    <div class="manual-row">
+      <input class="manual-input" id="manual-input" type="text" placeholder="AMN-XXXXXXXX-XX-1" onkeydown="if(event.key==='Enter')validarManual()"/>
+      <button class="manual-btn" onclick="validarManual()">Validar</button>
+    </div>
+  </div>
+
+  <div class="result" id="result">
+    <div class="result-icon" id="res-icon"></div>
+    <div class="result-title" id="res-title"></div>
+    <div id="res-details"></div>
+    <div class="result-msg" id="res-msg"></div>
+    <button class="scan-again" onclick="resetScanner()">Escanear siguiente</button>
+  </div>
+</div>
+
+<script>
+let statsOk = 0, statsFail = 0;
+let scanning = true;
+let qrScanner = null;
+
+function initScanner() {
+  qrScanner = new Html5Qrcode('reader');
+  qrScanner.start(
+    { facingMode: 'environment' },
+    { fps: 10, qrbox: { width: 250, height: 250 } },
+    (codigo) => {
+      if (!scanning) return;
+      scanning = false;
+      qrScanner.pause();
+      validarCodigo(codigo);
+    },
+    () => {}
+  ).catch(err => {
+    document.querySelector('.scanner-title').textContent = 'Cámara no disponible — usa el código manual';
+    console.log('Camera error:', err);
+  });
+}
+
+async function validarCodigo(codigo) {
+  try {
+    const res = await fetch('/api/validar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ codigo })
+    });
+    const data = await res.json();
+    mostrarResultado(data, codigo);
+  } catch (e) {
+    mostrarResultado({ valido: false, mensaje: 'Error de conexión' }, codigo);
+  }
+}
+
+function mostrarResultado(data, codigo) {
+  const result = document.getElementById('result');
+  result.style.display = 'block';
+  result.className = 'result ' + (data.valido ? 'ok' : 'fail');
+  document.getElementById('res-icon').textContent = data.valido ? '✅' : '❌';
+  document.getElementById('res-title').textContent = data.valido ? '¡Acceso permitido!' : 'Acceso denegado';
+  document.getElementById('res-msg').textContent = data.mensaje || '';
+
+  if (data.valido) {
+    statsOk++;
+    document.getElementById('stat-ok').textContent = statsOk;
+    document.getElementById('res-details').innerHTML = `
+      <div class="result-row"><span class="result-lbl">Mesa</span><span class="result-val">${data.mesa}</span></div>
+      <div class="result-row"><span class="result-lbl">Piso</span><span class="result-val">${data.piso}</span></div>
+      <div class="result-row"><span class="result-lbl">Lugar</span><span class="result-val">#${data.lugar}</span></div>
+      ${data.comprador ? `<div class="result-row"><span class="result-lbl">Comprador</span><span class="result-val">${data.comprador}</span></div>` : ''}
+      <div class="result-row"><span class="result-lbl">Código</span><span class="result-val" style="font-size:11px;">${data.codigo}</span></div>
+    `;
+  } else {
+    statsFail++;
+    document.getElementById('stat-fail').textContent = statsFail;
+    document.getElementById('res-details').innerHTML = '';
+  }
+  result.scrollIntoView({ behavior: 'smooth' });
+}
+
+function validarManual() {
+  const codigo = document.getElementById('manual-input').value.trim();
+  if (!codigo) return;
+  validarCodigo(codigo);
+  document.getElementById('manual-input').value = '';
+}
+
+function resetScanner() {
+  document.getElementById('result').style.display = 'none';
+  scanning = true;
+  if (qrScanner) qrScanner.resume();
+}
+
+initScanner();
+</script>
+</body>
+</html>

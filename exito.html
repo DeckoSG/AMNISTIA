@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pago exitoso — Amnistía</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#1a0f2e;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+.box{background:#1c1c28;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px 24px;text-align:center;max-width:400px;width:100%;}
+.icon{width:60px;height:60px;background:rgba(93,202,133,0.15);border:2px solid #2d6a2d;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+.icon svg{width:28px;height:28px;color:#5dca85;}
+h1{font-size:20px;font-weight:600;margin-bottom:6px;}
+.sub{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:20px;line-height:1.5;}
+.qr-section{background:#fff;border-radius:14px;padding:16px;margin:0 auto 14px;display:inline-block;}
+#qrcode img,#qrcode canvas{display:block;}
+.screenshot-note{background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.35);border-radius:10px;padding:12px 14px;margin-bottom:16px;display:flex;align-items:flex-start;gap:8px;text-align:left;}
+.screenshot-note p{font-size:12px;color:rgba(201,168,76,0.9);line-height:1.5;}
+.screenshot-note strong{color:#c9a84c;}
+.codigo{font-family:monospace;font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:16px;word-break:break-all;padding:0 8px;}
+.detalles{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px;margin-bottom:20px;text-align:left;}
+.det-row{display:flex;justify-content:space-between;padding:5px 0;border-top:1px solid rgba(255,255,255,0.06);font-size:12px;}
+.det-row:first-child{border-top:none;}
+.det-lbl{color:rgba(255,255,255,0.4);}
+.det-val{color:#fff;font-weight:500;}
+.btn{display:inline-flex;align-items:center;gap:6px;background:#7c4dbd;color:#fff;border:none;border-radius:24px;padding:11px 24px;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;}
+.btn:hover{background:#a67de0;}
+.loading{font-size:12px;color:rgba(255,255,255,0.35);padding:30px 0;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.spinner{width:28px;height:28px;border:3px solid rgba(255,255,255,0.1);border-top-color:#7c4dbd;border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.ticket-nav{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:10px;}
+.tnav-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 14px;font-size:11px;color:rgba(255,255,255,0.6);cursor:pointer;font-family:'Inter',sans-serif;}
+.tnav-btn:hover{background:rgba(255,255,255,0.14);}
+.tnav-label{font-size:11px;color:rgba(255,255,255,0.4);}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="icon">
+    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+  <h1>¡Pago completado!</h1>
+  <p class="sub">Tu lugar está reservado. Muestra el código QR en la entrada del evento.</p>
+
+  <div id="main-content">
+    <div class="loading">
+      <div class="spinner"></div>
+      <span>Generando tu ticket...</span>
+    </div>
+  </div>
+
+  <a href="index.html" class="btn" style="margin-top:8px;">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+    Volver al inicio
+  </a>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://isimdeobpvadbwsrauon.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_hNlQDPJ-Vl2YFUYg3K2Zsw_HHmX1xuK';
+
+const params = new URLSearchParams(window.location.search);
+const paymentId = params.get('payment_id');
+const externalRef = params.get('external_reference');
+
+let tickets = [];
+let curTicket = 0;
+
+async function cargarTickets(){
+  try {
+    // Intentar obtener tickets reales desde Supabase via external_reference (venta ids)
+    let codigos = [];
+
+    if(externalRef){
+      const ventaIds = externalRef.split(',').filter(Boolean);
+      for(const vid of ventaIds){
+        // Esperar hasta 15 segundos a que el webhook procese los tickets
+        for(let intento=0; intento<5; intento++){
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/tickets?venta_id=eq.${vid}&select=codigo,mesa_id,piso,lugar_num`, {
+            headers:{
+              'apikey': SUPABASE_KEY,
+              'Authorization': `Bearer ${SUPABASE_KEY}`
+            }
+          });
+          const data = await res.json();
+          if(data && data.length > 0){
+            codigos = [...codigos, ...data];
+            break;
+          }
+          // Esperar 3 segundos antes de reintentar
+          await new Promise(r=>setTimeout(r,3000));
+        }
+      }
+    }
+
+    if(codigos.length > 0){
+      tickets = codigos;
+      mostrarTicket(0);
+    } else {
+      // Fallback: mostrar código básico con payment_id
+      const codigoFallback = paymentId ? `AMN-PAY-${paymentId}` : `AMN-${Date.now()}`;
+      tickets = [{codigo: codigoFallback, mesa_id:'—', piso:'—', lugar_num:1}];
+      mostrarTicket(0);
+    }
+  } catch(e) {
+    console.error(e);
+    const codigoFallback = paymentId ? `AMN-PAY-${paymentId}` : `AMN-${Date.now()}`;
+    tickets = [{codigo: codigoFallback, mesa_id:'—', piso:'—', lugar_num:1}];
+    mostrarTicket(0);
+  }
+}
+
+function mostrarTicket(idx){
+  curTicket = idx;
+  const t = tickets[idx];
+  const pisoLabel = t.piso==='pa'?'Planta Alta':t.piso==='pb'?'Planta Baja':t.piso;
+
+  const nav = tickets.length > 1 ? `
+    <div class="ticket-nav">
+      <button class="tnav-btn" onclick="mostrarTicket(${idx>0?idx-1:tickets.length-1})">‹ Ant</button>
+      <span class="tnav-label">Ticket ${idx+1} de ${tickets.length}</span>
+      <button class="tnav-btn" onclick="mostrarTicket(${idx<tickets.length-1?idx+1:0})">Sig ›</button>
+    </div>` : '';
+
+  document.getElementById('main-content').innerHTML = `
+    ${nav}
+    <div class="qr-section"><div id="qrcode-${idx}"></div></div>
+    <div class="screenshot-note">
+      <span style="font-size:18px;flex-shrink:0;">📸</span>
+      <p><strong>Toma un screenshot</strong> de esta pantalla para mostrar tu QR en la entrada del evento.</p>
+    </div>
+    <div class="codigo">${t.codigo}</div>
+    <div class="detalles">
+      <div class="det-row"><span class="det-lbl">Evento</span><span class="det-val">Tributo a José Madero</span></div>
+      <div class="det-row"><span class="det-lbl">Fecha</span><span class="det-val">Sáb 13 de junio</span></div>
+      <div class="det-row"><span class="det-lbl">Acceso</span><span class="det-val">9:00 PM</span></div>
+      <div class="det-row"><span class="det-lbl">Lugar</span><span class="det-val">McCarthy's Irish Pub</span></div>
+      ${t.mesa_id!=='—'?`<div class="det-row"><span class="det-lbl">Mesa</span><span class="det-val">${t.mesa_id} · ${pisoLabel}</span></div>`:''}
+      ${t.lugar_num?`<div class="det-row"><span class="det-lbl">Lugar #</span><span class="det-val">${t.lugar_num}</span></div>`:''}
+    </div>
+  `;
+
+  // Generar QR
+  setTimeout(()=>{
+    const el = document.getElementById('qrcode-'+idx);
+    if(el){
+      new QRCode(el, {
+        text: t.codigo,
+        width: 200,
+        height: 200,
+        colorDark: '#1a0f2e',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+  }, 100);
+}
+
+// Iniciar carga
+cargarTickets();
+</script>
+</body>
+</html>

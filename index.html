@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tributo a José Madero — Amnistía · McCarthy's Irish Pub</title>
+<meta name="description" content="Tributo a José Madero por Amnistía. Sábado 13 de junio · McCarthy's Irish Pub Boca del Río · Acceso 9:00 PM">
+<meta property="og:title" content="Tributo a José Madero — Amnistía">
+<meta property="og:description" content="Sábado 13 de junio · McCarthy's Irish Pub Boca del Río">
+<meta property="og:image" content="flyer.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --pu1:#2d1b4e;--pu2:#4a2d7a;--pu3:#7c4dbd;--pu4:#a67de0;--pu5:#c9a8f0;
+  --wh:#ffffff;--wh2:rgba(255,255,255,0.85);--wh3:rgba(255,255,255,0.55);--wh4:rgba(255,255,255,0.12);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',system-ui,sans-serif;background:#1a0f2e;color:var(--wh);line-height:1.5;}
+.page{max-width:800px;margin:0 auto;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:rgba(26,15,46,0.96);border-bottom:1px solid var(--wh4);position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);}
+.nav-logo{font-size:13px;font-weight:600;color:var(--pu5);letter-spacing:1px;text-transform:uppercase;}
+.nav-links{display:flex;gap:20px;}
+.nav-links a{font-size:12px;color:var(--wh3);text-decoration:none;}
+.nav-links a:hover{color:var(--wh);}
+.nav-cta{background:var(--pu3);color:var(--wh);border:none;border-radius:20px;padding:7px 18px;font-size:12px;font-weight:500;cursor:pointer;text-decoration:none;white-space:nowrap;}
+.nav-cta:hover{background:var(--pu4);}
+@media(max-width:600px){
+  nav{padding:12px 16px;}
+  .nav-links{display:none;}
+  .nav-cta{padding:8px 16px;font-size:12px;}
+}
+.hero{position:relative;min-height:520px;display:flex;align-items:flex-end;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#2d1b4e 0%,#7c4dbd 55%,#4a2d7a 100%);}
+.hero-flyer{position:absolute;right:0;top:0;height:100%;width:55%;object-fit:cover;object-position:top center;opacity:0.65;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,46,1) 0%,rgba(26,15,46,0.5) 55%,transparent 100%);}
+.hero-overlay-left{position:absolute;inset:0;background:linear-gradient(to right,rgba(26,15,46,0.9) 35%,transparent 70%);}
+.hero-content{position:relative;z-index:2;padding:48px 28px 40px;}
+.hero-tag{display:inline-block;background:rgba(124,77,189,0.3);border:1px solid rgba(124,77,189,0.5);border-radius:20px;padding:4px 14px;font-size:11px;color:var(--pu5);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;}
+.hero-pre{font-size:11px;font-weight:500;color:var(--wh3);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;}
+.hero-title{font-size:52px;font-weight:600;color:var(--wh);line-height:0.95;margin-bottom:8px;letter-spacing:-2px;}
+.hero-by{font-size:15px;color:var(--pu5);margin-bottom:28px;letter-spacing:1px;}
+.hero-meta{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;}
+.hero-meta-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--wh2);}
+.hero-meta-item svg{width:16px;height:16px;color:var(--pu4);flex-shrink:0;}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-primary{background:var(--pu3);color:var(--wh);border:none;border-radius:24px;padding:13px 28px;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background 0.2s;}
+.btn-primary:hover{background:var(--pu4);}
+.btn-outline{background:transparent;color:var(--wh);border:1.5px solid var(--wh4);border-radius:24px;padding:13px 24px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;transition:all 0.2s;}
+.btn-outline:hover{border-color:rgba(255,255,255,0.4);background:var(--wh4);}
+section{padding:40px 28px;}
+.section-label{font-size:10px;font-weight:600;color:var(--pu4);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:20px;}
+.desc-box{background:rgba(255,255,255,0.04);border:1px solid var(--wh4);border-radius:16px;padding:28px;}
+.desc-quote{font-size:15px;color:var(--wh2);line-height:1.8;margin-bottom:24px;font-style:italic;}
+.desc-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.desc-tag{background:rgba(124,77,189,0.2);border:1px solid rgba(124,77,189,0.35);border-radius:20px;padding:5px 14px;font-size:11px;color:var(--pu5);display:flex;align-items:center;gap:5px;}
+.desc-tag svg{width:13px;height:13px;}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+@media(max-width:600px){.info-grid{grid-template-columns:1fr;}}
+.info-card{background:rgba(255,255,255,0.05);border:1px solid var(--wh4);border-radius:14px;padding:18px;}
+.info-card svg{width:22px;height:22px;color:var(--pu4);margin-bottom:10px;}
+.info-card-label{font-size:10px;color:var(--wh3);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+.info-card-val{font-size:14px;color:var(--wh);font-weight:500;line-height:1.5;}
+.boletos-box{background:rgba(124,77,189,0.12);border:1px solid rgba(124,77,189,0.35);border-radius:18px;padding:32px;text-align:center;}
+.boletos-price{font-size:42px;font-weight:600;color:var(--wh);margin-bottom:4px;}
+.boletos-price-label{font-size:12px;color:var(--wh3);margin-bottom:24px;}
+.boletos-features{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:28px;}
+.boletos-feature{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--wh3);}
+.boletos-feature svg{width:14px;height:14px;color:var(--pu4);}
+.boletos-btn{display:inline-flex;align-items:center;gap:8px;background:var(--pu3);color:var(--wh);border:none;border-radius:28px;padding:16px 36px;font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;transition:background 0.2s;}
+.boletos-btn:hover{background:var(--pu4);}
+.boletos-note{font-size:11px;color:rgba(255,255,255,0.3);margin-top:14px;}
+.location-card{background:rgba(255,255,255,0.04);border:1px solid var(--wh4);border-radius:14px;padding:20px;display:flex;align-items:flex-start;gap:16px;}
+.location-icon{width:44px;height:44px;background:rgba(124,77,189,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.location-icon svg{width:22px;height:22px;color:var(--pu4);}
+.location-name{font-size:15px;font-weight:500;color:var(--wh);margin-bottom:4px;}
+.location-addr{font-size:12px;color:var(--wh3);line-height:1.6;}
+.location-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--pu5);text-decoration:none;margin-top:10px;}
+.location-link:hover{color:var(--wh);}
+
+/* GALERIA */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.gallery-item{border-radius:10px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid var(--wh4);aspect-ratio:1;cursor:pointer;transition:all 0.2s;position:relative;}
+.gallery-item:hover{border-color:var(--pu3);transform:scale(1.02);}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;}
+.gallery-item.large{grid-column:span 2;aspect-ratio:2/1;}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:200;align-items:center;justify-content:center;padding:20px;}
+.lightbox.show{display:flex;}
+.lightbox img{max-width:90vw;max-height:90vh;border-radius:10px;object-fit:contain;}
+.lightbox-close{position:absolute;top:16px;right:20px;font-size:28px;color:rgba(255,255,255,0.6);cursor:pointer;background:none;border:none;line-height:1;}
+.lightbox-close:hover{color:#fff;}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:24px;width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.lightbox-nav:hover{background:rgba(255,255,255,0.2);}
+.lightbox-prev{left:16px;}
+.lightbox-next{right:16px;}
+
+/* VIDEOS TIKTOK */
+.tiktok-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+@media(max-width:560px){.tiktok-grid{grid-template-columns:1fr;}}
+.tiktok-wrap{background:rgba(255,255,255,0.04);border:1px solid var(--wh4);border-radius:14px;overflow:hidden;display:flex;justify-content:center;align-items:center;padding:12px;}
+
+footer{background:rgba(0,0,0,0.35);border-top:1px solid var(--wh4);padding:32px 28px;text-align:center;}
+.footer-logo{font-size:15px;font-weight:600;color:var(--pu5);letter-spacing:1px;margin-bottom:6px;}
+.footer-text{font-size:12px;color:var(--wh3);margin-bottom:4px;}
+.footer-social{display:flex;align-items:center;justify-content:center;gap:16px;margin:16px 0;flex-wrap:wrap;}
+.footer-social a{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--wh3);text-decoration:none;background:rgba(255,255,255,0.05);border:1px solid var(--wh4);border-radius:20px;padding:7px 16px;transition:all 0.2s;}
+.footer-social a:hover{border-color:var(--pu3);color:var(--wh);}
+.footer-social a svg{width:15px;height:15px;color:var(--pu4);}
+.footer-legal{font-size:10px;color:rgba(255,255,255,0.2);margin-top:16px;line-height:1.8;}
+</style>
+</head>
+<body>
+<div class="page">
+
+<nav>
+  <div class="nav-logo">Amnistía</div>
+  <div class="nav-links">
+    <a href="#info">Info</a>
+    <a href="#galeria">Galería</a>
+    <a href="#videos">Videos</a>
+  </div>
+  <a href="mapa.html" class="nav-cta">Comprar boletos</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <img class="hero-flyer" src="flyer.png" alt="Flyer del evento" onerror="this.style.display='none'">
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-left"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Próximo evento</div>
+    <div class="hero-pre">Tributo a</div>
+    <div class="hero-title">José<br>Madero</div>
+    <div class="hero-by">por Amnistía</div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        Sábado 13 de junio, 2025
+      </div>
+      <div class="hero-meta-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Acceso 9:00 PM &nbsp;·&nbsp; Inicio 10:00 PM
+      </div>
+      <div class="hero-meta-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        McCarthy's Irish Pub &nbsp;·&nbsp; Boca del Río
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="mapa.html" class="btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 5l2 2-9.5 9.5-3 1 1-3L15 5z"/></svg>
+        Comprar boletos
+      </a>
+      <a href="#info" class="btn-outline">Ver detalles</a>
+    </div>
+  </div>
+</section>
+
+<section id="info">
+  <div class="section-label">Sobre el evento</div>
+  <div class="desc-box">
+    <p class="desc-quote">"Hay canciones que no se olvidan. Hay voces que se quedan. Amnistía rinde tributo a José Madero con una noche donde cada acorde, cada letra y cada silencio cobran vida en el escenario del McCarthy's Irish Pub."</p>
+    <div class="desc-tags">
+      <div class="desc-tag"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Tributo en vivo</div>
+      <div class="desc-tag"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Evento +18</div>
+      <div class="desc-tag"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Pxndx · José Madero Solo</div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="section-label">Detalles</div>
+  <div class="info-grid">
+    <div class="info-card">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <div class="info-card-label">Fecha</div>
+      <div class="info-card-val">Sábado<br>13 de junio, 2025</div>
+    </div>
+    <div class="info-card">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <div class="info-card-label">Horario</div>
+      <div class="info-card-val">Acceso 9:00 PM<br>Inicio 10:00 PM</div>
+    </div>
+    <div class="info-card">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/></svg>
+      <div class="info-card-label">Cover</div>
+      <div class="info-card-val">$100 MXN<br>por lugar</div>
+    </div>
+    <div class="info-card">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+      <div class="info-card-label">Edad mínima</div>
+      <div class="info-card-val">+18 años<br>ID obligatoria</div>
+    </div>
+    <div class="info-card">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      <div class="info-card-label">Lugar</div>
+      <div class="info-card-val">McCarthy's Irish Pub<br>Boca del Río, Ver.</div>
+    </div>
+    <div class="info-card">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      <div class="info-card-label">Artista</div>
+      <div class="info-card-val">Amnistía<br>Tributo a José Madero</div>
+    </div>
+  </div>
+</section>
+
+<section id="boletos" style="padding-top:0;">
+  <div class="section-label">Boletos</div>
+  <div class="boletos-box">
+    <div class="boletos-price">$100 <span style="font-size:18px;font-weight:400;color:var(--pu5);">MXN</span></div>
+    <div class="boletos-price-label">por lugar · cargo por servicio incluido · Total $109 MXN</div>
+    <div class="boletos-features">
+      <div class="boletos-feature"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Elige tu mesa en el mapa</div>
+      <div class="boletos-feature"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Pago seguro con Mercado Pago</div>
+      <div class="boletos-feature"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Código de acceso en tu correo</div>
+    </div>
+    <a href="mapa.html" class="boletos-btn">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+      Comprar boletos
+    </a>
+    <div class="boletos-note">Evento +18 · Identificación obligatoria a la entrada</div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="section-label">Ubicación</div>
+  <div class="location-card">
+    <div class="location-icon">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+    </div>
+    <div>
+      <div class="location-name">McCarthy's Irish Pub — Boca del Río</div>
+      <div class="location-addr">Boca del Río, Veracruz · México</div>
+      <a class="location-link" href="https://maps.google.com/?q=McCarthys+Irish+Pub+Boca+del+Rio+Veracruz" target="_blank">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Ver en Google Maps
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA con lightbox -->
+<section id="galeria" style="padding-top:0;">
+  <div class="section-label">Eventos anteriores</div>
+  <div class="gallery-grid">
+    <div class="gallery-item large" onclick="openLightbox(0)">
+      <img src="fotos/foto1.jpeg" alt="Amnistía en vivo — McCarthy's lleno" loading="lazy"/>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(1)">
+      <img src="fotos/foto2.jpeg" alt="Foto grupal con el público" loading="lazy"/>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(2)">
+      <img src="fotos/foto3.jpeg" alt="McCarthy's desde el escenario" loading="lazy"/>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(3)">
+      <img src="fotos/foto4.jpeg" alt="Banda en escenario" loading="lazy"/>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(4)">
+      <img src="fotos/foto5.jpeg" alt="Show con luces de colores" loading="lazy"/>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(5)">
+      <img src="fotos/foto6.jpeg" alt="Selfie banda escenario" loading="lazy"/>
+    </div>
+    <div class="gallery-item large" onclick="openLightbox(6)">
+      <img src="fotos/foto7.jpeg" alt="Vista desde la batería" loading="lazy"/>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(7)">
+      <img src="fotos/foto8.jpeg" alt="McCarthy's lleno desde el escenario" loading="lazy"/>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">‹</button>
+  <img id="lightbox-img" src="" alt=""/>
+  <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">›</button>
+</div>
+
+<!-- VIDEOS TIKTOK -->
+<section id="videos" style="padding-top:0;">
+  <div class="section-label">Videos</div>
+  <div class="tiktok-grid">
+    <div class="tiktok-wrap">
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@xmnistixbandmx/video/7641991062612987143" data-video-id="7641991062612987143" style="max-width:325px;min-width:270px;"><section><a target="_blank" href="https://www.tiktok.com/@xmnistixbandmx">@xmnistixbandmx</a></section></blockquote>
+    </div>
+    <div class="tiktok-wrap">
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@xmnistixbandmx/video/7642372051390549266" data-video-id="7642372051390549266" style="max-width:325px;min-width:270px;"><section><a target="_blank" href="https://www.tiktok.com/@xmnistixbandmx">@xmnistixbandmx</a></section></blockquote>
+    </div>
+    <div class="tiktok-wrap">
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@xmnistixbandmx/video/7643112258326809864" data-video-id="7643112258326809864" style="max-width:325px;min-width:270px;"><section><a target="_blank" href="https://www.tiktok.com/@xmnistixbandmx">@xmnistixbandmx</a></section></blockquote>
+    </div>
+    <div class="tiktok-wrap">
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@xmnistixbandmx/video/7642705433865571602" data-video-id="7642705433865571602" style="max-width:325px;min-width:270px;"><section><a target="_blank" href="https://www.tiktok.com/@xmnistixbandmx">@xmnistixbandmx</a></section></blockquote>
+    </div>
+    <div class="tiktok-wrap">
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@xmnistixbandmx/video/7641989324992482578" data-video-id="7641989324992482578" style="max-width:325px;min-width:270px;"><section><a target="_blank" href="https://www.tiktok.com/@xmnistixbandmx">@xmnistixbandmx</a></section></blockquote>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Amnistía</div>
+  <div class="footer-text">Tributo a José Madero · Sábado 13 de junio, 2025</div>
+  <div class="footer-text">McCarthy's Irish Pub · Boca del Río, Veracruz</div>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/amnistiabandmx/" target="_blank">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @amnistiabandmx
+    </a>
+    <a href="https://www.tiktok.com/@xmnistixbandmx" target="_blank">
+      <svg fill="currentColor" viewBox="0 0 24 24" width="15" height="15"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.74a4.85 4.85 0 01-1.01-.05z"/></svg>
+      @xmnistixbandmx
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=100080202462329" target="_blank">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      Amnistia Band
+    </a>
+  </div>
+  <div class="footer-legal">Evento +18 · Identificación obligatoria a la entrada<br>Términos y condiciones · Política de reembolso<br>© 2025 Amnistía. Todos los derechos reservados.</div>
+</footer>
+
+</div>
+
+<!-- LIGHTBOX JS -->
+<script>
+const fotos = [
+  'fotos/foto1.jpeg','fotos/foto2.jpeg','fotos/foto3.jpeg','fotos/foto4.jpeg',
+  'fotos/foto5.jpeg','fotos/foto6.jpeg','fotos/foto7.jpeg','fotos/foto8.jpeg'
+];
+let curFoto = 0;
+function openLightbox(idx){
+  curFoto = idx;
+  document.getElementById('lightbox-img').src = fotos[idx];
+  document.getElementById('lightbox').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e){
+  if(!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')){
+    document.getElementById('lightbox').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+}
+function navLightbox(dir){
+  curFoto = (curFoto + dir + fotos.length) % fotos.length;
+  document.getElementById('lightbox-img').src = fotos[curFoto];
+}
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape') closeLightbox({target:document.getElementById('lightbox')});
+  if(e.key==='ArrowRight') navLightbox(1);
+  if(e.key==='ArrowLeft') navLightbox(-1);
+});
+</script>
+<script async src="https://www.tiktok.com/embed.js"></script>
+</body>
+</html>

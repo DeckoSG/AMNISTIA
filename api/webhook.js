@@ -111,7 +111,7 @@ async function enviarCorreoBrevo(venta, codigos) {
       <p style="color:rgba(255,255,255,0.7);margin:0 0 18px;font-size:13px;">Hola ${venta.comprador_nombre || 'amig@'}, tu compra fue confirmada.</p>
       <table style="width:100%;border-collapse:collapse;">
         <tr><td style="padding:6px 0;color:rgba(255,255,255,0.5);font-size:12px;border-top:1px solid rgba(255,255,255,0.07);">Evento</td><td style="padding:6px 0;color:#fff;font-size:12px;text-align:right;">Tributo a José Madero</td></tr>
-        <tr><td style="padding:6px 0;color:rgba(255,255,255,0.5);font-size:12px;border-top:1px solid rgba(255,255,255,0.07);">Fecha</td><td style="padding:6px 0;color:#fff;font-size:12px;text-align:right;">Sábado 13 de junio, 2025</td></tr>
+        <tr><td style="padding:6px 0;color:rgba(255,255,255,0.5);font-size:12px;border-top:1px solid rgba(255,255,255,0.07);">Fecha</td><td style="padding:6px 0;color:#fff;font-size:12px;text-align:right;">Sábado 13 de junio, 2026</td></tr>
         <tr><td style="padding:6px 0;color:rgba(255,255,255,0.5);font-size:12px;border-top:1px solid rgba(255,255,255,0.07);">Horario</td><td style="padding:6px 0;color:#fff;font-size:12px;text-align:right;">Acceso 9:00 PM · Inicio 10:00 PM</td></tr>
         <tr><td style="padding:6px 0;color:rgba(255,255,255,0.5);font-size:12px;border-top:1px solid rgba(255,255,255,0.07);">Lugar</td><td style="padding:6px 0;color:#fff;font-size:12px;text-align:right;">McCarthy's Irish Pub · Boca del Río</td></tr>
         <tr><td style="padding:6px 0;color:rgba(255,255,255,0.5);font-size:12px;border-top:1px solid rgba(255,255,255,0.07);">Mesa</td><td style="padding:6px 0;color:#c9a8f0;font-size:13px;font-weight:bold;text-align:right;">${venta.mesa_id} · ${pisoLabel}</td></tr>
